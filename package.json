@@ -10,7 +10,10 @@
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"lint": "eslint . && prettier --check .",
 		"db:push": "drizzle-kit push",
+		"db:generate": "drizzle-kit generate",
 		"db:migrate": "drizzle-kit migrate",
+		"db:push-prod": "drizzle-kit push --config=drizzle-prod.config.ts",
+		"db:migrate-prod": "drizzle-kit migrate --config=drizzle-prod.config.ts",
 		"db:studio": "drizzle-kit studio",
 		"test:unit": "vitest",
 		"test": "npm run test:unit -- --run",
@@ -40,6 +43,7 @@
 	},
 	"dependencies": {
 		"@neondatabase/serverless": "^0.9.4",
-		"drizzle-orm": "^0.33.0"
+		"drizzle-orm": "^0.33.0",
+		"postgres": "^3.4.5"
 	}
 }

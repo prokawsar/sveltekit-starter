@@ -15,8 +15,14 @@
 		'swapping time and space...',
 	]
 
+	const getUsers = async () => {
+		const res = await fetch('/api/v1/getUsers')
+		console.log(res)
+	}
+
 	$effect(() => {
 		console.log('on mount')
+		getUsers()
 
 		const interval = setInterval(() => {
 			i += 1
@@ -27,8 +33,6 @@
 			clearInterval(interval)
 		}
 	})
-
-	$inspect(count).with(() => console.log('count', count))
 
 	let i = $state(-1)
 </script>

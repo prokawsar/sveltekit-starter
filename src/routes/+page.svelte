@@ -2,6 +2,8 @@
 	import Pure from '$lib/components/Pure.svelte'
 	import Snippets from '$lib/components/Snippets.svelte'
 	import { typewriter } from '$lib/utils/typewriter'
+	import { SignOut } from '@auth/sveltekit/components'
+	const { data } = $props()
 
 	let count = $state(0)
 
@@ -28,8 +30,8 @@
 		}
 	})
 
-	$inspect(count).with(() => console.log('count', count))
-
+	// $inspect(count).with(() => console.log('count', count))
+	console.log(data)
 	let i = $state(-1)
 </script>
 
@@ -40,6 +42,15 @@
 <div
 	class="mx-auto flex h-screen max-w-7xl flex-col items-center justify-center gap-2 text-xl font-bold"
 >
+	{#if data.session}
+		<div>
+			<button class="flex items-center justify-center rounded-lg border px-5 py-3">
+				<SignOut>Signout</SignOut>
+			</button>
+		</div>
+	{:else}
+		<a class="rounded-lg border px-5 py-3" href="/login">Login</a>
+	{/if}
 	<div class="flex flex-row">
 		<button class="cursor-pointer border px-10 py-6" onclick={() => count++}>{count}</button>
 		<p class="cursor-pointer border px-10 py-6">{computed}</p>
